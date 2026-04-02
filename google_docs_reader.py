@@ -9,8 +9,14 @@ SCOPES = [
 
 def get_google_clients():
     """service_account.json으로 Drive/Docs 클라이언트 반환."""
+    import os
+    sa_path = (
+        "/etc/secrets/service_account.json"
+        if os.path.exists("/etc/secrets/service_account.json")
+        else "service_account.json"
+    )
     creds = service_account.Credentials.from_service_account_file(
-        "service_account.json", scopes=SCOPES
+        sa_path, scopes=SCOPES
     )
     drive = build("drive", "v3", credentials=creds)
     docs = build("docs", "v1", credentials=creds)
