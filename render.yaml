@@ -1,0 +1,17 @@
+services:
+  - type: worker
+    name: meet-meddic-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: SLACK_BOT_TOKEN
+        sync: false
+      - key: SLACK_CHANNEL
+        value: "#meddic-bot-test"
+      - key: GOOGLE_DRIVE_FOLDER_ID
+        value: 1flvBGcjo__RLqfUSF2iBhgHnMbn9Ipxz
+      - key: POLL_INTERVAL_SECONDS
+        value: "60"
