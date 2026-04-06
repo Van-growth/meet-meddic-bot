@@ -32,21 +32,21 @@ def get_new_docs(drive, folder_id, since_timestamp):
         since_timestamp: ISO 8601 형식 타임스탬프 (UTC)
 
     Returns:
-        list of dict with id, name, createdTime
+        list of dict with id, name, modifiedTime
     """
     query = (
         f"'{folder_id}' in parents"
         " and mimeType='application/vnd.google-apps.document'"
         " and trashed=false"
-        f" and createdTime > '{since_timestamp}'"
+        f" and modifiedTime > '{since_timestamp}'"
     )
 
     results = (
         drive.files()
         .list(
             q=query,
-            fields="files(id, name, createdTime)",
-            orderBy="createdTime desc",
+            fields="files(id, name, modifiedTime)",
+            orderBy="modifiedTime desc",
         )
         .execute()
     )

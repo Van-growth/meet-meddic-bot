@@ -48,7 +48,7 @@ def run_pipeline() -> None:
     folder_id = os.environ["GOOGLE_DRIVE_FOLDER_ID"]
     slack_channel = os.environ.get("SLACK_CHANNEL", "#ae-discovery")
 
-    since = (datetime.now(timezone.utc) - timedelta(hours=2)).strftime(
+    since = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime(
         "%Y-%m-%dT%H:%M:%S.000Z"
     )
 
